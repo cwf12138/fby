@@ -168,7 +168,7 @@ def load_data(args):
     return train_loader, test_loader
 
 
-def load_test(args):
+def load_test(args):    #这里是关键
     test_dataset = TeethData(args.test_path, False, mean=None, std=None)
     print("测试集数据个数：", len(test_dataset))
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset,

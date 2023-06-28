@@ -16,7 +16,7 @@ from models.pretrained.resnet18 import *
 def main():
 
     args = parse_args()
-    save_path = join(args.outf, args.save)
+    save_path = join(args.outf, args.save)   
 
     save_args(args,save_path)
 
@@ -30,7 +30,7 @@ def main():
     checkpoint = torch.load('experiments/resnet18/dental_fluorosis_resnet18.pth',map_location='cpu')
     net.load_state_dict(checkpoint['net'])
     
-    test_loader = load_test(args)
+    test_loader = load_test(args)  
         
     # train stage
     acc = test(test_loader, net, None, device, args)

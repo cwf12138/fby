@@ -13,7 +13,7 @@ def parse_args():
     parser.add_argument('--train_path',
                         default='./dataset/train.txt')
     parser.add_argument('--test_path',
-                        default='./dataset/test.txt')
+                        default='./dataset/test.txt')       #测试集数据
 
     # model parameters
     parser.add_argument('--in_channels', default=3,type=int,
