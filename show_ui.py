@@ -48,6 +48,7 @@ class MainWindow(QMainWindow):
 
             # 更新结果标签中的信息
             self.result_label.setText(f"图片路径：{image_path}")
+            print(image_path)
 
 
 if __name__ == "__main__":

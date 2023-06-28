@@ -40,11 +40,16 @@ def test(dataloader, model, criterion, device, args):
     test_ap = MulticlassAveragePrecision(num_classes=args.classes)
     
     model.eval()
+    result_fby=""
     with torch.no_grad():
         for inputs, targets in dataloader:
             inputs, targets = inputs.to(device), targets.to(device)
             preds = model(inputs)
-
+            print(preds.argmax(1))
+            st=str(preds.argmax(1))
+            result_st=st[8]
+            print(result_st)
+            result_fby=result_st
             # test_loss += criterion(preds, targets).item()
 
             correct += (preds.argmax(1) == targets).type(torch.float).sum().item()
@@ -72,4 +77,4 @@ def test(dataloader, model, criterion, device, args):
     print("correct = ", correct)
     print(f"Test Error: \n Accuracy: {(100 * correct):>0.2f}%, Avg loss: {test_loss:>8f} \n")
 
-    return correct
+    return correct,result_fby

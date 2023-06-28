@@ -33,9 +33,10 @@ def main():
     test_loader = load_test(args)  
         
     # train stage
-    acc = test(test_loader, net, None, device, args)
+    acc,reslut = test(test_loader, net, None, device, args)
 
     print(round(acc, 4))
+    print(reslut)
 
 
 if __name__ == '__main__':
