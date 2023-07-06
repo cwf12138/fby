@@ -12,9 +12,9 @@ from utils.common import *
 warnings.filterwarnings('ignore')
 
 from models.pretrained.resnet18 import *
-
+map_fby={"0":"mild","1":'medium',"2":"severe","3":"normal"}
 def main():
-
+    global result_fby
     args = parse_args()
     save_path = join(args.outf, args.save)   
 
@@ -33,10 +33,14 @@ def main():
     test_loader = load_test(args)  
         
     # train stage
-    acc,reslut = test(test_loader, net, None, device, args)
+    acc,result = test(test_loader, net, None, device, args)
 
     print(round(acc, 4))
-    print(reslut)
+    print(result)
+    result_fby=result
+    print(map_fby[result])
+def result_data():
+    return map_fby[result_fby]
 
 
 if __name__ == '__main__':

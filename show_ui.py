@@ -1,13 +1,13 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFileDialog
 from PyQt5.QtGui import QPixmap
-
-
+from test import main,result_data
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("图片上传程序")
         self.resize(800, 400)
+        self.image_path=""
 
         # 创建主窗口的布局
         main_layout = QHBoxLayout()
@@ -47,8 +47,21 @@ class MainWindow(QMainWindow):
             self.image_label.setPixmap(pixmap.scaled(300, 300, aspectRatioMode=2))
 
             # 更新结果标签中的信息
-            self.result_label.setText(f"图片路径：{image_path}")
+            #self.result_label.setText(f"图片路径：{image_path}")
+            self.image_path=image_path
+            self.write_data()
+            main()
+            self.result_label.setText("{}".format(result_data()))
             print(image_path)
+    def write_data(self):
+        # 打开文件并追加内容
+        file_path = "./dataset/test.txt"  # 文件路径
+        path_photo=self.image_path
+        content = "\n{}\t2".format(path_photo)
+        print(content)
+        # 打开文件并追加内容 
+        with open(file_path, "a") as file:
+            file.write(content)
 
 
 if __name__ == "__main__":
